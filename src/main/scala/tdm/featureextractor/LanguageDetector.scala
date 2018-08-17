@@ -6,7 +6,7 @@ import com.optimaize.langdetect.LanguageDetectorBuilder
 import com.optimaize.langdetect.ngram.NgramExtractors
 import com.optimaize.langdetect.profiles.LanguageProfileReader
 import com.optimaize.langdetect.text.CommonTextObjectFactories
-import Helper._
+import tdm.featureextractor.Helper._
 
 import scala.collection.JavaConverters._
 

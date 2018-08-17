@@ -5,9 +5,8 @@ showCurrentGitBranch
 git.useGitDescribe := true
 
 lazy val commonSettings = Seq(
-  organization := "org.hathitrust.htrc",
-  organizationName := "HathiTrust Research Center",
-  organizationHomepage := Some(url("https://www.hathitrust.org/htrc")),
+  organization := "tdm",
+  organizationName := "Text and Data Mining (TDM) initiative involving HathiTrust/HTRC, JSTOR, and Portico",
   scalaVersion := "2.12.6",
   scalacOptions ++= Seq(
     "-feature",
@@ -45,11 +44,11 @@ lazy val commonSettings = Seq(
   Keys.`package` := (Compile / Keys.`package` dependsOn Test / test).value
 )
 
-lazy val `tdm-feature-extractor` = (project in file(".")).
+lazy val `feature-extractor` = (project in file(".")).
   enablePlugins(GitVersioning, GitBranchPrompt).
   settings(commonSettings).
   settings(
-    name := "tdm-feature-extractor",
+    name := "feature-extractor",
     description := "Extracts a set of features (such as ngram counts, POS tags, etc.) from a " +
       "corpus for aiding in conducting 'distant-reading' (aka non-consumptive) research",
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
