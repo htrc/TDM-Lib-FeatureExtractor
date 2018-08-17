@@ -65,6 +65,7 @@ lazy val `feature-extractor` = (project in file(".")).
         classifier "models-german"
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"    % "0.6",
+      "org.slf4j"                     %  "slf4j-api"            % "1.7.25",
       "commons-codec"                 %  "commons-codec"        % "1.11",
       "org.scalacheck"                %% "scalacheck"           % "1.14.0"      % Test,
       "org.scalatest"                 %% "scalatest"            % "3.0.5"       % Test
