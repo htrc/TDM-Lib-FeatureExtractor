@@ -7,7 +7,7 @@ git.useGitDescribe := true
 lazy val commonSettings = Seq(
   organization := "tdm",
   organizationName := "Text and Data Mining (TDM) initiative involving HathiTrust/HTRC, JSTOR, and Portico",
-  scalaVersion := "2.12.6",
+  scalaVersion := "2.12.7",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -55,8 +55,8 @@ lazy val `feature-extractor` = (project in file(".")).
     libraryDependencies ++= Seq(
       "org.hathitrust.htrc"           %% "data-model"           % "1.3.1",
       "org.hathitrust.htrc"           %% "scala-utils"          % "2.6",
-      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.1",
-      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.1"
+      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2",
+      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2"
         classifier "models"
         classifier "models-arabic"
         classifier "models-chinese"
@@ -65,9 +65,10 @@ lazy val `feature-extractor` = (project in file(".")).
         classifier "models-german"
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"    % "0.6",
+      "org.slf4j"                     %  "slf4j-api"            % "1.7.25",
       "commons-codec"                 %  "commons-codec"        % "1.11",
       "org.scalacheck"                %% "scalacheck"           % "1.14.0"      % Test,
       "org.scalatest"                 %% "scalatest"            % "3.0.5"       % Test
     ),
-    crossScalaVersions := Seq("2.12.6", "2.11.12")
+    crossScalaVersions := Seq("2.12.7", "2.11.12")
   )
