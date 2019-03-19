@@ -1,5 +1,6 @@
 package tdm.featureextractor.stanfordnlp
 
+import java.net.URL
 import java.util.{Locale, Properties, concurrent}
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
@@ -8,21 +9,35 @@ import tdm.featureextractor.Helper._
 import tdm.featureextractor.PageFeatureExtractor
 
 import scala.util.{Failure, Success}
+import org.hathitrust.htrc.tools.scala.io.IOUtils.using
 
 object NLPInstances {
   private val logger = LoggerFactory.getLogger(getClass)
   private val instances = new concurrent.ConcurrentHashMap[Locale, StanfordCoreNLP]()
 
-  private def createInstance(locale: Locale): StanfordCoreNLP = {
+  private def createInstance(props: Properties): StanfordCoreNLP =
+    new StanfordCoreNLP(props)
+
+  private def getLocalePropertiesFromClasspath(locale: Locale): Properties = {
     val lang = locale.getLanguage
     val langProps = s"/nlp/config/$lang.properties"
     logger.debug(s"Loading ${locale.getDisplayLanguage} settings from $langProps")
-    val props = loadPropertiesFromClasspath(langProps) match {
+    loadPropertiesFromClasspath(langProps) match {
       case Success(p) => p
       case Failure(e) => throw e
     }
+  }
 
-    new StanfordCoreNLP(props)
+  private def getLocalePropertiesFromUrl(locale: Locale, baseUrl: URL): Properties = {
+    val lang = locale.getLanguage
+    val localePropUrl = new URL(baseUrl, s"$lang.properties")
+    logger.debug(s"Loading ${locale.getDisplayLanguage} settings from $localePropUrl")
+    val localeProps = new Properties()
+    using(localePropUrl.openStream()) { propStream =>
+      localeProps.load(propStream)
+    }
+
+    localeProps
   }
 
   val whitespaceTokenizer: StanfordCoreNLP = {
@@ -32,14 +47,18 @@ object NLPInstances {
     new StanfordCoreNLP(props)
   }
 
-  def forLanguage(lang: String): Option[StanfordCoreNLP] = forLocale(Locale.forLanguageTag(lang))
+  def forLanguage(lang: String, propBaseUrl: Option[URL] = None): Option[StanfordCoreNLP] = forLocale(Locale.forLanguageTag(lang))
 
-  def forLocale(locale: Locale): Option[StanfordCoreNLP] = {
+  def forLocale(locale: Locale, propBaseUrl: Option[URL] = None): Option[StanfordCoreNLP] = {
     if (PageFeatureExtractor.supportedLanguages.contains(locale.getLanguage))
       Option(instances.get(locale)).orElse {
         this.synchronized {
           Option(instances.get(locale)).orElse {
-            val instance = createInstance(locale)
+            val props = propBaseUrl match {
+              case None => getLocalePropertiesFromClasspath(locale)
+              case Some(baseUrl) => getLocalePropertiesFromUrl(locale, baseUrl)
+            }
+            val instance = createInstance(props)
             instances.putIfAbsent(locale, instance)
             Some(instance)
           }
@@ -47,4 +66,5 @@ object NLPInstances {
       }
     else None
   }
+
 }

@@ -161,7 +161,7 @@ object PageFeatureExtractor {
     val locale = detectLanguage(text)
     val version = DigestUtils.md5Hex(text)
     val (header, body, footer) =
-      locale.flatMap(NLPInstances.forLocale) match {
+      locale.flatMap(NLPInstances.forLocale(_)) match {
         case Some(nlp) =>
           val headerFeatures = extractFullSectionFeatures(page.headerLines, nlp)
           val bodyFeatures = extractFullSectionFeatures(page.bodyLines, nlp)
