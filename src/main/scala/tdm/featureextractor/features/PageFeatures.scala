@@ -29,6 +29,9 @@ object PageFeatures {
       footer = footer
     )
   }
+
+  def unapply(arg: PageFeatures): Option[(String, Option[String], Int, Int, Int, Option[Int], Option[SectionFeatures], Option[SectionFeatures], Option[SectionFeatures])] =
+    Some(arg.version, arg.language, arg.tokenCount, arg.lineCount, arg.emptyLineCount, arg.sentenceCount, arg.header, arg.body, arg.footer)
 }
 
 /**
