@@ -7,7 +7,7 @@ git.useGitDescribe := true
 lazy val commonSettings = Seq(
   organization := "tdm",
   organizationName := "Text and Data Mining (TDM) initiative involving HathiTrust/HTRC, JSTOR, and Portico",
-  scalaVersion := "2.12.9",
+  scalaVersion := "2.12.10",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -17,7 +17,7 @@ lazy val commonSettings = Seq(
   externalResolvers := Seq(
     Resolver.defaultLocal,
     Resolver.mavenLocal,
-    "HTRC Nexus Repository" at "http://nexus.htrc.illinois.edu/content/groups/public",
+    "HTRC Nexus Repository" at "https://nexus.htrc.illinois.edu/content/groups/public",
   ),
   packageOptions in (Compile, packageBin) += Package.ManifestAttributes(
     ("Git-Sha", git.gitHeadCommit.value.getOrElse("N/A")),
@@ -53,8 +53,8 @@ lazy val `feature-extractor` = (project in file("."))
       "corpus for aiding in conducting 'distant-reading' (aka non-consumptive) research",
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     libraryDependencies ++= Seq(
-      "org.hathitrust.htrc"           %% "data-model"           % "1.5",
-      "org.hathitrust.htrc"           %% "scala-utils"          % "2.8",
+      "org.hathitrust.htrc"           %% "data-model"           % "1.6",
+      "org.hathitrust.htrc"           %% "scala-utils"          % "2.9",
       "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2",
       "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2"
         classifier "models"
@@ -67,8 +67,8 @@ lazy val `feature-extractor` = (project in file("."))
       "com.optimaize.languagedetector" % "language-detector"    % "0.6",
       "org.slf4j"                     %  "slf4j-api"            % "1.7.28",
       "commons-codec"                 %  "commons-codec"        % "1.13",
-      "org.scalacheck"                %% "scalacheck"           % "1.14.0"      % Test,
+      "org.scalacheck"                %% "scalacheck"           % "1.14.2"      % Test,
       "org.scalatest"                 %% "scalatest"            % "3.0.8"       % Test
     ),
-    crossScalaVersions := Seq("2.12.9", "2.11.12")
+    crossScalaVersions := Seq("2.12.10", "2.11.12")
   )
