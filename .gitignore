@@ -1,4 +1,5 @@
 /.clover/
 /.idea/
 /project/project/
+/credentials.sbt
 target/
