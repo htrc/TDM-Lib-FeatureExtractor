@@ -53,7 +53,7 @@ lazy val `feature-extractor` = (project in file("."))
       "corpus for aiding in conducting 'distant-reading' (aka non-consumptive) research",
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     libraryDependencies ++= Seq(
-      "org.hathitrust.htrc"           %% "data-model"           % "1.6",
+      "org.hathitrust.htrc"           %% "data-model"           % "1.8",
       "org.hathitrust.htrc"           %% "scala-utils"          % "2.9",
       "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2",
       "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2"
