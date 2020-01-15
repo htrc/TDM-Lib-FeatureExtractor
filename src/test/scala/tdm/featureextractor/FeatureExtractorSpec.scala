@@ -2,15 +2,15 @@ package tdm.featureextractor
 
 import org.hathitrust.htrc.textprocessing.runningheaders.PageStructureParser.StructuredPage
 import org.hathitrust.htrc.textprocessing.runningheaders.{Lines, Page, PageStructure}
-import org.scalatest.{FlatSpec, Matchers, OptionValues, ParallelTestExecution}
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.{OptionValues, ParallelTestExecution}
 import tdm.featureextractor.PageFeatureExtractor._
 
 /**
   * A very basic spec to test the feature extractor code
   */
-class FeatureExtractorSpec extends FlatSpec
-  with ScalaCheckPropertyChecks
+class FeatureExtractorSpec extends AnyFlatSpec
   with OptionValues
   with Matchers
   with ParallelTestExecution {
@@ -34,7 +34,9 @@ class FeatureExtractorSpec extends FlatSpec
 
   val page: StructuredPage = new Page with PageStructure {
     override def textLines: Lines = pageLines
+
     override def numHeaderLines: Int = 2
+
     override def numFooterLines: Int = 0
   }
 
