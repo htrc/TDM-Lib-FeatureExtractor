@@ -7,7 +7,7 @@ git.useGitDescribe := true
 lazy val commonSettings = Seq(
   organization := "tdm",
   organizationName := "Text and Data Mining (TDM) initiative involving HathiTrust/HTRC, JSTOR, and Portico",
-  scalaVersion := "2.12.10",
+  scalaVersion := "2.12.12",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -55,8 +55,8 @@ lazy val `feature-extractor` = (project in file("."))
     libraryDependencies ++= Seq(
       "org.hathitrust.htrc"           %% "data-model"           % "1.8.1",
       "org.hathitrust.htrc"           %% "scala-utils"          % "2.10.1",
-      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2",
-      "edu.stanford.nlp"              %  "stanford-corenlp"     % "3.9.2"
+      "edu.stanford.nlp"              %  "stanford-corenlp"     % "4.2.0",
+      "edu.stanford.nlp"              %  "stanford-corenlp"     % "4.2.0"
         classifier "models"
         classifier "models-arabic"
         classifier "models-chinese"
@@ -66,9 +66,9 @@ lazy val `feature-extractor` = (project in file("."))
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"    % "0.6",
       "org.slf4j"                     %  "slf4j-api"            % "1.7.30",
-      "commons-codec"                 %  "commons-codec"        % "1.14",
-      "org.scalacheck"                %% "scalacheck"           % "1.14.3"      % Test,
-      "org.scalatest"                 %% "scalatest"            % "3.1.0"       % Test
+      "commons-codec"                 %  "commons-codec"        % "1.15",
+      "org.scalacheck"                %% "scalacheck"           % "1.15.1"      % Test,
+      "org.scalatest"                 %% "scalatest"            % "3.2.3"       % Test
     ),
-    crossScalaVersions := Seq("2.12.10", "2.11.12")
+    crossScalaVersions := Seq("2.12.12", "2.11.12")
   )
