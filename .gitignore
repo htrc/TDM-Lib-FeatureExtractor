@@ -1,4 +1,5 @@
 /.clover/
+/.bsp/
 /.idea/
 /project/project/
 /credentials.sbt

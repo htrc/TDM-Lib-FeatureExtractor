@@ -17,7 +17,7 @@ lazy val commonSettings = Seq(
   externalResolvers := Seq(
     Resolver.defaultLocal,
     Resolver.mavenLocal,
-    "HTRC Nexus Repository" at "https://nexus.htrc.illinois.edu/content/groups/public",
+    "HTRC Nexus Repository" at "https://nexus.htrc.illinois.edu/repository/maven-public",
   ),
   packageOptions in (Compile, packageBin) += Package.ManifestAttributes(
     ("Git-Sha", git.gitHeadCommit.value.getOrElse("N/A")),
@@ -35,9 +35,9 @@ lazy val commonSettings = Seq(
   publishTo := {
     val nexus = "https://nexus.htrc.illinois.edu/"
     if (isSnapshot.value)
-      Some("HTRC Snapshots Repository" at nexus + "content/repositories/snapshots")
+      Some("HTRC Snapshots Repository" at nexus + "repository/snapshots")
     else
-      Some("HTRC Releases Repository"  at nexus + "content/repositories/releases")
+      Some("HTRC Releases Repository"  at nexus + "repository/releases")
   },
   // force to run 'test' before 'package' and 'publish' tasks
   publish := (publish dependsOn Test / test).value,
