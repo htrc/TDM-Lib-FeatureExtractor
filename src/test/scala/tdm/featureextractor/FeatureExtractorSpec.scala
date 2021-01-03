@@ -69,7 +69,7 @@ class FeatureExtractorSpec extends AnyFlatSpec
       "lines" -> Map("NNS" -> 1)
     )
 
-    bodyFeatures.tokenCount shouldBe 77
+    bodyFeatures.tokenCount shouldBe 81
     bodyFeatures.lineCount shouldBe 12
     bodyFeatures.emptyLineCount shouldBe 1
     bodyFeatures.sentenceCount.value shouldBe 6
@@ -80,13 +80,16 @@ class FeatureExtractorSpec extends AnyFlatSpec
     bodyFeatures.endCharCount shouldBe Map("x" -> 1, "." -> 6, "y" -> 1, "-" -> 2, "," -> 1)
     bodyFeatures.tokenPosCount shouldBe Map(
       "Once" -> Map("RB" -> 1),
+      "lazy" -> Map("JJ" -> 1),
       "this" -> Map("DT" -> 1),
       "in" -> Map("IN" -> 1),
       "his" -> Map("PRP$" -> 1),
+      "too" -> Map("RB" -> 1),
       "jumped" -> Map("VBD" -> 1),
       "soundly" -> Map("RB" -> 2),
       "." -> Map("." -> 5),
       "jump" -> Map("VB" -> 1),
+      "all" -> Map("RB" -> 1),
       "complained" -> Map("VBD" -> 1),
       "Sleeping" -> Map("VBG" -> 1),
       "a" -> Map("DT" -> 3),
@@ -98,6 +101,7 @@ class FeatureExtractorSpec extends AnyFlatSpec
       "upon" -> Map("IN" -> 1),
       "to" -> Map("TO" -> 1),
       "bed" -> Map("NN" -> 1),
+      "-" -> Map("HYPH" -> 2),
       "did" -> Map("VBD" -> 1),
       "," -> Map("," -> 7),
       "was" -> Map("VBD" -> 2),
@@ -105,7 +109,6 @@ class FeatureExtractorSpec extends AnyFlatSpec
       "The" -> Map("DT" -> 2),
       "over" -> Map("IN" -> 2),
       "notice" -> Map("NN" -> 1, "VB" -> 1),
-      "all-too-lazy" -> Map("JJ" -> 1),
       "unsuccessfully" -> Map("RB" -> 1),
       "he" -> Map("PRP" -> 1),
       "even" -> Map("RB" -> 1),
@@ -115,20 +118,20 @@ class FeatureExtractorSpec extends AnyFlatSpec
       "Not" -> Map("RB" -> 1),
       "tried" -> Map("VBD" -> 1),
       "an" -> Map("DT" -> 1),
-      "..." -> Map(":" -> 1),
+      "..." -> Map("." -> 1),
       "time" -> Map("NN" -> 1),
       "ignored" -> Map("VBD" -> 1),
       "sleeping" -> Map("VBG" -> 1),
       "about" -> Map("IN" -> 1),
       "n't" -> Map("RB" -> 1),
-      "fox" -> Map("NN" -> 5),
+      "fox" -> Map("NNP" -> 4, "NN" -> 1),
       "received" -> Map("VBD" -> 1),
       "the" -> Map("DT" -> 6)
     )
 
     pageFeatures.footer shouldBe None
 
-    pageFeatures.tokenCount shouldBe 85
+    pageFeatures.tokenCount shouldBe 89
     pageFeatures.lineCount shouldBe 14
     pageFeatures.emptyLineCount shouldBe 1
     pageFeatures.sentenceCount.value shouldBe 7
