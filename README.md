@@ -10,14 +10,14 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 
 # Usage
 ## SBT
-`libraryDependencies += "tdm" %% "feature-extractor" % "3.0"`
+`libraryDependencies += "org.hathitrust.htrc" %% "feature-extractor" % "3.0"`
 
 ## Maven
 
 ### Scala 2.13
 ```
 <dependency>
-    <groupId>tdm</groupId>
+    <groupId>org.hathitrust.htrc</groupId>
     <artifactId>feature-extractor_2.13</artifactId>
     <version>3.0</version>
 </dependency>
@@ -26,7 +26,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 ### Scala 2.12
 ```
 <dependency>
-    <groupId>tdm</groupId>
+    <groupId>org.hathitrust.htrc</groupId>
     <artifactId>feature-extractor_2.12</artifactId>
     <version>3.0</version>
 </dependency>
