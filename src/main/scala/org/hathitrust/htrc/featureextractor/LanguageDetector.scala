@@ -1,4 +1,4 @@
-package tdm.featureextractor
+package org.hathitrust.htrc.featureextractor
 
 import _root_.java.util.Locale
 
@@ -6,7 +6,7 @@ import com.optimaize.langdetect.LanguageDetectorBuilder
 import com.optimaize.langdetect.ngram.NgramExtractors
 import com.optimaize.langdetect.profiles.LanguageProfileReader
 import com.optimaize.langdetect.text.CommonTextObjectFactories
-import tdm.featureextractor.Helper._
+import Helper._
 
 import scala.jdk.CollectionConverters._
 

@@ -1,15 +1,17 @@
-package tdm.featureextractor.java
+package org.hathitrust.htrc.featureextractor.java
 
+import org.hathitrust.htrc.featureextractor.features.{SectionFeatures => ScalaSectionFeatures}
+import org.hathitrust.htrc.featureextractor.java.features.{PageFeatures => JavaPageFeatures}
+import org.hathitrust.htrc.featureextractor.java.features.{SectionFeatures => JavaSectionFeatures}
+import org.hathitrust.htrc.featureextractor.{PageFeatureExtractor => ScalaPageFeatureExtractor}
 import org.hathitrust.htrc.textprocessing.runningheaders.PageStructure
-import tdm.featureextractor.features.SectionFeatures
-import tdm.featureextractor.java.features.PageFeatures
 
 import scala.jdk.CollectionConverters._
 
 object PageFeatureExtractor {
   @SuppressWarnings(Array("org.wartremover.warts.AsInstanceOf"))
-  private def sectionFeaturesToJava(f: SectionFeatures): tdm.featureextractor.java.features.SectionFeatures =
-    new tdm.featureextractor.java.features.SectionFeatures(
+  private def sectionFeaturesToJava(f: ScalaSectionFeatures): JavaSectionFeatures =
+    new JavaSectionFeatures(
       f.tokenCount,
       f.lineCount,
       f.emptyLineCount,
@@ -28,10 +30,10 @@ object PageFeatureExtractor {
     * @return The extracted PageFeatures
     */
   @SuppressWarnings(Array("org.wartremover.warts.AsInstanceOf"))
-  def extractPageFeatures(page: PageStructure): PageFeatures = {
-    val features = tdm.featureextractor.PageFeatureExtractor.extractPageFeatures(page)
+  def extractPageFeatures(page: PageStructure): JavaPageFeatures = {
+    val features = ScalaPageFeatureExtractor.extractPageFeatures(page)
 
-    new PageFeatures(
+    new JavaPageFeatures(
       features.version,
       features.language.orNull,
       features.tokenCount,

@@ -1,4 +1,4 @@
-package tdm.featureextractor.features
+package org.hathitrust.htrc.featureextractor.features
 
 object PageFeatures {
   @SuppressWarnings(Array("org.wartremover.warts.OptionPartial"))

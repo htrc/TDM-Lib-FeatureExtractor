@@ -1,4 +1,4 @@
-package tdm.featureextractor.java.features;
+package org.hathitrust.htrc.featureextractor.java.features;
 
 public class PageFeatures implements BasicFeatures {
     protected final String version;

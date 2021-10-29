@@ -1,4 +1,4 @@
-package tdm.featureextractor
+package org.hathitrust.htrc.featureextractor
 
 import _root_.java.io.FileNotFoundException
 import _root_.java.util.{Locale, Properties}
