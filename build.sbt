@@ -24,14 +24,20 @@ lazy val commonSettings = Seq(
     ("Git-Version", git.gitDescribedVersion.value.getOrElse("N/A")),
     ("Git-Dirty", git.gitUncommittedChanges.value.toString),
     ("Build-Date", new java.util.Date().toString)
-  ),
+  )
+)
+
+lazy val wartRemoverSettings = Seq(
   Compile / compile / wartremoverWarnings ++= Warts.unsafe.diff(Seq(
     Wart.DefaultArguments,
     Wart.NonUnitStatements,
     Wart.StringPlusAny,
     Wart.Return,
     Wart.Null
-  )),
+  ))
+)
+
+lazy val publishSettings = Seq(
   publishTo := {
     val nexus = "https://nexus.htrc.illinois.edu/"
     if (isSnapshot.value)
@@ -65,6 +71,8 @@ lazy val ammoniteSettings = Seq(
 lazy val `feature-extractor` = (project in file("."))
   .enablePlugins(GitVersioning, GitBranchPrompt)
   .settings(commonSettings)
+  .settings(wartRemoverSettings)
+  .settings(publishSettings)
   .settings(ammoniteSettings)
   .settings(
     name := "feature-extractor",
