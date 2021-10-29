@@ -8,7 +8,7 @@ import tdm.featureextractor.LanguageDetector.detectLanguage
 import tdm.featureextractor.features.{PageFeatures, SectionFeatures}
 import tdm.featureextractor.stanfordnlp.NLPInstances
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.util.matching.Regex
 
 object PageFeatureExtractor {
@@ -21,6 +21,7 @@ object PageFeatureExtractor {
   private val maxTokenChars: Int = 200
   private val posTagUnknown: String = "UNK"
 
+  @SuppressWarnings(Array("org.wartremover.warts.Var"))
   private[featureextractor] def countLongestAlphaSequenceOfCapitalizedLines(lines: Lines): Int = {
     import _root_.java.lang.Math.max
 
@@ -50,12 +51,13 @@ object PageFeatureExtractor {
     val emptyLineCount = lines.size - nonEmptyLines.size
 
     // create the character distribution for begin and end characters on each line
-    val beginCharCount = nonEmptyLines.groupBy(_.head.toString).mapValues(_.length).map(identity)
-    val endCharCount = nonEmptyLines.groupBy(_.last.toString).mapValues(_.length).map(identity)
+    val beginCharCount = nonEmptyLines.groupBy(_.head.toString).map { case (k, v) => k -> v.length }
+    val endCharCount = nonEmptyLines.groupBy(_.last.toString).map { case (k, v) => k -> v.length }
 
     // find the count of the longest sequence of lines starting with a capital letter in alphabetic order
     val longestAlphaSeq = countLongestAlphaSequenceOfCapitalizedLines(nonEmptyLines)
 
+    @SuppressWarnings(Array("org.wartremover.warts.Var"))
     val text = {
       var s = nonEmptyLines.mkString("\n")
       s = hyphenWordRegex.replaceAllIn(s, "$1$2\n") // combine hyphenated words occurring at end of line
@@ -87,8 +89,7 @@ object PageFeatureExtractor {
           tokenPosArr
             .map { case (_, pos) => pos }
             .groupBy(identity)
-            .mapValues(_.length)
-            .map(identity)
+            .map { case (k, v) => k -> v.length }
     }
 
     Some(SectionFeatures(
@@ -109,12 +110,13 @@ object PageFeatureExtractor {
     val emptyLineCount = lines.size - nonEmptyLines.size
 
     // create the character distribution for begin and end characters on each line
-    val beginCharCount = nonEmptyLines.groupBy(_.head.toString).mapValues(_.length).map(identity)
-    val endCharCount = nonEmptyLines.groupBy(_.last.toString).mapValues(_.length).map(identity)
+    val beginCharCount = nonEmptyLines.groupBy(_.head.toString).map { case (k, v) => k -> v.length }
+    val endCharCount = nonEmptyLines.groupBy(_.last.toString).map { case (k, v) => k -> v.length }
 
     // find the count of the longest sequence of lines starting with a capital letter in alphabetic order
     val longestAlphaSeq = countLongestAlphaSequenceOfCapitalizedLines(nonEmptyLines)
 
+    @SuppressWarnings(Array("org.wartremover.warts.Var"))
     val text = {
       var s = nonEmptyLines.mkString("\n")
       s = hyphenWordRegex.replaceAllIn(s, "$1$2\n") // combine hyphenated words occurring at end of line
@@ -141,7 +143,7 @@ object PageFeatureExtractor {
         .toList
 
     val tokenPosCount = tokenPos.groupBy { case (token, _) => token }.map {
-      case (token, tokenPosArr) => token -> tokenPosArr.map { case (_, pos) => pos }.groupBy(identity).mapValues(_.length).map(identity)
+      case (token, tokenPosArr) => token -> tokenPosArr.map { case (_, pos) => pos }.groupBy(identity).map { case (k, v) => k -> v.length }
     }
 
     Some(SectionFeatures(
@@ -156,6 +158,7 @@ object PageFeatureExtractor {
     ))
   }
 
+  @SuppressWarnings(Array("org.wartremover.warts.AsInstanceOf"))
   def extractPageFeatures(page: PageStructure): PageFeatures = {
     val text = page.asInstanceOf[Page].text
     val locale = detectLanguage(text)

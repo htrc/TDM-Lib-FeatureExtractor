@@ -18,6 +18,7 @@ object NLPInstances {
   private def createInstance(props: Properties): StanfordCoreNLP =
     new StanfordCoreNLP(props)
 
+  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   private def getLocalePropertiesFromClasspath(locale: Locale): Properties = {
     val lang = locale.getLanguage
     val langProps = s"/nlp/config/$lang.properties"
@@ -47,7 +48,7 @@ object NLPInstances {
     new StanfordCoreNLP(props)
   }
 
-  def forLanguage(lang: String, propBaseUrl: Option[URL] = None): Option[StanfordCoreNLP] = forLocale(Locale.forLanguageTag(lang))
+  def forLanguage(lang: String, propBaseUrl: Option[URL] = None): Option[StanfordCoreNLP] = forLocale(Locale.forLanguageTag(lang), propBaseUrl)
 
   def forLocale(locale: Locale, propBaseUrl: Option[URL] = None): Option[StanfordCoreNLP] = {
     if (PageFeatureExtractor.supportedLanguages.contains(locale.getLanguage))
