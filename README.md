@@ -3,7 +3,7 @@
 # Build
 `sbt "+package"`
 
-then find the result in `target/scala-2.11/` (or `target/scala-2.12/`) folder.
+then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 
 # Publish to HTRC Nexus
 `sbt "+publish"`
