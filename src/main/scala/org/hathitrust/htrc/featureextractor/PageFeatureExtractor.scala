@@ -1,12 +1,12 @@
-package tdm.featureextractor
+package org.hathitrust.htrc.featureextractor
 
 import edu.stanford.nlp.ling.CoreAnnotations
 import edu.stanford.nlp.pipeline.{Annotation, StanfordCoreNLP}
 import org.apache.commons.codec.digest.DigestUtils
+import org.hathitrust.htrc.featureextractor.stanfordnlp.NLPInstances
 import org.hathitrust.htrc.textprocessing.runningheaders.{Lines, Page, PageStructure}
-import tdm.featureextractor.LanguageDetector.detectLanguage
-import tdm.featureextractor.features.{PageFeatures, SectionFeatures}
-import tdm.featureextractor.stanfordnlp.NLPInstances
+import LanguageDetector.detectLanguage
+import org.hathitrust.htrc.featureextractor.features.{PageFeatures, SectionFeatures}
 
 import scala.jdk.CollectionConverters._
 import scala.util.matching.Regex

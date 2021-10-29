@@ -1,4 +1,4 @@
-package tdm.featureextractor.java.features;
+package org.hathitrust.htrc.featureextractor.java.features;
 
 import java.io.Serializable;
 

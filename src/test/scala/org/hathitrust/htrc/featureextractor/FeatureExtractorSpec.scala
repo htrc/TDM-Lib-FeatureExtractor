@@ -1,11 +1,11 @@
-package tdm.featureextractor
+package org.hathitrust.htrc.featureextractor
 
 import org.hathitrust.htrc.textprocessing.runningheaders.PageStructureParser.StructuredPage
 import org.hathitrust.htrc.textprocessing.runningheaders.{Lines, Page, PageStructure}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 import org.scalatest.{OptionValues, ParallelTestExecution}
-import tdm.featureextractor.PageFeatureExtractor._
+import PageFeatureExtractor._
 
 /**
   * A very basic spec to test the feature extractor code

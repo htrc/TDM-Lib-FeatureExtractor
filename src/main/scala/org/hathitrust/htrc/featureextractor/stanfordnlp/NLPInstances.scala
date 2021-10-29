@@ -1,12 +1,11 @@
-package tdm.featureextractor.stanfordnlp
+package org.hathitrust.htrc.featureextractor.stanfordnlp
 
 import java.net.URL
 import java.util.{Locale, Properties, concurrent}
-
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
+import org.hathitrust.htrc.featureextractor.PageFeatureExtractor
 import org.slf4j.LoggerFactory
-import tdm.featureextractor.Helper._
-import tdm.featureextractor.PageFeatureExtractor
+import org.hathitrust.htrc.featureextractor.Helper._
 
 import scala.util.{Failure, Success}
 import org.hathitrust.htrc.tools.scala.io.IOUtils.using

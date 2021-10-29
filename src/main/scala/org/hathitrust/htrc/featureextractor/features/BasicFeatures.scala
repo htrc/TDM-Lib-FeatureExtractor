@@ -1,4 +1,4 @@
-package tdm.featureextractor.features
+package org.hathitrust.htrc.featureextractor.features
 
 /**
   * Trait representing the basic features that will be recorded for a page
