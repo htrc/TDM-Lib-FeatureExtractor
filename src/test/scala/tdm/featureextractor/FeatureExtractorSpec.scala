@@ -3,7 +3,7 @@ package tdm.featureextractor
 import org.hathitrust.htrc.textprocessing.runningheaders.PageStructureParser.StructuredPage
 import org.hathitrust.htrc.textprocessing.runningheaders.{Lines, Page, PageStructure}
 import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
+import org.scalatest.matchers.should
 import org.scalatest.{OptionValues, ParallelTestExecution}
 import tdm.featureextractor.PageFeatureExtractor._
 
@@ -12,7 +12,7 @@ import tdm.featureextractor.PageFeatureExtractor._
   */
 class FeatureExtractorSpec extends AnyFlatSpec
   with OptionValues
-  with Matchers
+  with should.Matchers
   with ParallelTestExecution {
 
   val pageLines: Lines = IndexedSeq[String](

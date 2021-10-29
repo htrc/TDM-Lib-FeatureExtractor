@@ -18,6 +18,7 @@ object NLPInstances {
   private def createInstance(props: Properties): StanfordCoreNLP =
     new StanfordCoreNLP(props)
 
+  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   private def getLocalePropertiesFromClasspath(locale: Locale): Properties = {
     val lang = locale.getLanguage
     val langProps = s"/nlp/config/$lang.properties"

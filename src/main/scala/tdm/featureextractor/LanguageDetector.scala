@@ -8,7 +8,7 @@ import com.optimaize.langdetect.profiles.LanguageProfileReader
 import com.optimaize.langdetect.text.CommonTextObjectFactories
 import tdm.featureextractor.Helper._
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 
 object LanguageDetector {

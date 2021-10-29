@@ -1,6 +1,7 @@
 package tdm.featureextractor.features
 
 object PageFeatures {
+  @SuppressWarnings(Array("org.wartremover.warts.OptionPartial"))
   def apply(version: String,
             language: Option[String],
             header: Option[SectionFeatures],
