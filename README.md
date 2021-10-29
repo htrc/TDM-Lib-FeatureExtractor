@@ -10,7 +10,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 
 # Usage
 ## SBT
-`libraryDependencies += "tdm" %% "feature-extractor" % "2.7"`
+`libraryDependencies += "tdm" %% "feature-extractor" % "3.0"`
 
 ## Maven
 
@@ -19,7 +19,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 <dependency>
     <groupId>tdm</groupId>
     <artifactId>feature-extractor_2.13</artifactId>
-    <version>2.7</version>
+    <version>3.0</version>
 </dependency>
 ```
 
@@ -28,7 +28,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 <dependency>
     <groupId>tdm</groupId>
     <artifactId>feature-extractor_2.12</artifactId>
-    <version>2.7</version>
+    <version>3.0</version>
 </dependency>
 ```
 
