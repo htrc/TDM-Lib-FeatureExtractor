@@ -1,12 +1,10 @@
 showCurrentGitBranch
 
-git.useGitDescribe := true
-
-lazy val commonSettings = Seq(
+inThisBuild(Seq(
   organization := "org.hathitrust.htrc",
   organizationName := "HathiTrust Research Center",
   organizationHomepage := Some(url("https://www.hathitrust.org/htrc")),
-  scalaVersion := "2.13.6",
+  scalaVersion := "2.13.8",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -24,8 +22,11 @@ lazy val commonSettings = Seq(
     ("Git-Version", git.gitDescribedVersion.value.getOrElse("N/A")),
     ("Git-Dirty", git.gitUncommittedChanges.value.toString),
     ("Build-Date", new java.util.Date().toString)
-  )
-)
+  ),
+  dynverSonatypeSnapshots := true,
+  versionScheme := Some("semver-spec"),
+  crossScalaVersions := Seq("2.13.8", "2.12.15")
+))
 
 lazy val wartRemoverSettings = Seq(
   Compile / compile / wartremoverWarnings ++= Warts.unsafe.diff(Seq(
@@ -47,7 +48,13 @@ lazy val publishSettings = Seq(
   },
   // force to run 'test' before 'package' and 'publish' tasks
   publish := (publish dependsOn Test / test).value,
-  Keys.`package` := (Compile / Keys.`package` dependsOn Test / test).value
+  Keys.`package` := (Compile / Keys.`package` dependsOn Test / test).value,
+  credentials += Credentials(
+    "Sonatype Nexus Repository Manager", // realm
+    "nexus.htrc.illinois.edu", // host
+    "drhtrc", // user
+    sys.env.getOrElse("HTRC_NEXUS_DRHTRC_PWD", "abc123") // password
+  )
 )
 
 lazy val ammoniteSettings = Seq(
@@ -55,13 +62,14 @@ lazy val ammoniteSettings = Seq(
     {
       val version = scalaBinaryVersion.value match {
         case "2.10" => "1.0.3"
-        case _ ⇒  "2.4.0-23-76673f7f"
+        case "2.11" => "1.6.7"
+        case _ ⇒  "2.5.4"
       }
       "com.lihaoyi" % "ammonite" % version % Test cross CrossVersion.full
     },
   Test / sourceGenerators += Def.task {
     val file = (Test / sourceManaged).value / "amm.scala"
-    IO.write(file, """object amm extends App { ammonite.Main.main(args) }""")
+    IO.write(file, """object amm extends App { ammonite.AmmoniteMain.main(args) }""")
     Seq(file)
   }.taskValue,
   connectInput := true,
@@ -69,8 +77,7 @@ lazy val ammoniteSettings = Seq(
 )
 
 lazy val `feature-extractor` = (project in file("."))
-  .enablePlugins(GitVersioning, GitBranchPrompt)
-  .settings(commonSettings)
+  .enablePlugins(GitBranchPrompt)
   .settings(wartRemoverSettings)
   .settings(publishSettings)
   .settings(ammoniteSettings)
@@ -82,9 +89,9 @@ lazy val `feature-extractor` = (project in file("."))
     libraryDependencies ++= Seq(
       "org.hathitrust.htrc"           %% "data-model"               % "2.13",
       "org.hathitrust.htrc"           %% "scala-utils"              % "2.13",
-      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.5.0",
-      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.3.1",
-      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.3.1"
+      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.8.0",
+      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.4.0",
+      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.4.0"
         classifier "models"
         classifier "models-arabic"
         classifier "models-chinese"
@@ -93,13 +100,11 @@ lazy val `feature-extractor` = (project in file("."))
         classifier "models-german"
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"        % "0.6",
-      "org.slf4j"                     %  "slf4j-api"                % "1.7.32",
+      "org.slf4j"                     %  "slf4j-api"                % "1.7.36",
       "commons-codec"                 %  "commons-codec"            % "1.15",
-      "org.slf4j"                     %  "slf4j-simple"             % "1.7.32"  % Test,
-      "org.scalacheck"                %% "scalacheck"               % "1.15.4"  % Test,
-      "org.scalatest"                 %% "scalatest"                % "3.2.10"  % Test,
-      "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.9.0" % Test
-    ),
-    ThisBuild / versionScheme := Some("semver-spec"),
-    crossScalaVersions := Seq("2.13.6", "2.12.15")
+      "org.slf4j"                     %  "slf4j-simple"             % "1.7.36"  % Test,
+      "org.scalacheck"                %% "scalacheck"               % "1.16.0"  % Test,
+      "org.scalatest"                 %% "scalatest"                % "3.2.12"  % Test,
+      "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0" % Test
+    )
   )
