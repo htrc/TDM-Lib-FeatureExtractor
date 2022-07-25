@@ -1,4 +1,4 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/htrc/TDM-Lib-FeatureExtractor/Scala%20CI)]((https://github.com/htrc/TDM-Lib-FeatureExtractor/actions/workflows/ci.yml))
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/htrc/TDM-Lib-FeatureExtractor/Scala%20CI)](https://github.com/htrc/TDM-Lib-FeatureExtractor/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/htrc/TDM-Lib-FeatureExtractor/branch/develop/graph/badge.svg?token=ZFB6X3AKGV)](https://codecov.io/gh/htrc/TDM-Lib-FeatureExtractor)
 
 # TDM-Feature-Extractor
