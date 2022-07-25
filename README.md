@@ -1,3 +1,5 @@
+[![Scala CI](https://github.com/htrc/TDM-Lib-FeatureExtractor/actions/workflows/ci.yml/badge.svg)](https://github.com/htrc/TDM-Lib-FeatureExtractor/actions/workflows/ci.yml)
+
 # TDM-Feature-Extractor
 
 # Build
