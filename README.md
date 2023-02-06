@@ -14,7 +14,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 
 # Usage
 ## SBT
-`libraryDependencies += "org.hathitrust.htrc" %% "feature-extractor" % "3.0"`
+`libraryDependencies += "org.hathitrust.htrc" %% "feature-extractor" % VERSION`
 
 ## Maven
 
@@ -23,7 +23,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 <dependency>
     <groupId>org.hathitrust.htrc</groupId>
     <artifactId>feature-extractor_2.13</artifactId>
-    <version>3.0</version>
+    <version>VERSION</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ then find the result in `target/scala-2.13/` (or `target/scala-2.12/`) folder.
 <dependency>
     <groupId>org.hathitrust.htrc</groupId>
     <artifactId>feature-extractor_2.12</artifactId>
-    <version>3.0</version>
+    <version>VERSION</version>
 </dependency>
 ```
 

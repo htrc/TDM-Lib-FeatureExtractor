@@ -76,8 +76,8 @@ lazy val `feature-extractor` = (project in file("."))
       "corpus for aiding in conducting 'distant-reading' (aka non-consumptive) research",
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     libraryDependencies ++= Seq(
-      "org.hathitrust.htrc"           %% "data-model"               % "2.13",
-      "org.hathitrust.htrc"           %% "scala-utils"              % "2.13",
+      "org.hathitrust.htrc"           %% "data-model"               % "2.14",
+      "org.hathitrust.htrc"           %% "scala-utils"              % "2.14.3",
       "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.9.0",
       "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2",
       "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2"
@@ -91,12 +91,12 @@ lazy val `feature-extractor` = (project in file("."))
       "com.optimaize.languagedetector" % "language-detector"        % "0.6",
       "org.slf4j"                     %  "slf4j-api"                % "2.0.6",
       "commons-codec"                 %  "commons-codec"            % "1.15",
-      "org.slf4j"                     %  "slf4j-simple"             % "2.0.6"  % Test,
-      "org.scalacheck"                %% "scalacheck"               % "1.17.0"  % Test,
-      "org.scalatest"                 %% "scalatest"                % "3.2.15"  % Test,
-      "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0" % Test
+      "org.slf4j"                     %  "slf4j-simple"             % "2.0.6"     % Test,
+      "org.scalacheck"                %% "scalacheck"               % "1.17.0"    % Test,
+      "org.scalatest"                 %% "scalatest"                % "3.2.15"    % Test,
+      "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0"  % Test
     ),
     dependencyOverrides ++= Seq(
-      "junit" % "junit" % "4.13.2"
+      "junit" % "junit" % "4.13.2"  // to fix Snyk security report
     )
   )
