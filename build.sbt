@@ -53,7 +53,7 @@ lazy val ammoniteSettings = Seq(
       val version = scalaBinaryVersion.value match {
         case "2.10" => "1.0.3"
         case "2.11" => "1.6.7"
-        case _ ⇒  "2.5.5"
+        case _ ⇒  "2.5.6"
       }
       "com.lihaoyi" % "ammonite" % version % Test cross CrossVersion.full
     },
@@ -78,8 +78,8 @@ lazy val `feature-extractor` = (project in file("."))
     libraryDependencies ++= Seq(
       "org.hathitrust.htrc"           %% "data-model"               % "2.13",
       "org.hathitrust.htrc"           %% "scala-utils"              % "2.13",
-      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.8.1",
-      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2",
+      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.9.0",
+      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2" exclude("junit", "junit"),
       "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2"
         classifier "models"
         classifier "models-arabic"
@@ -89,14 +89,14 @@ lazy val `feature-extractor` = (project in file("."))
         classifier "models-german"
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"        % "0.6",
-      "org.slf4j"                     %  "slf4j-api"                % "2.0.5",
+      "org.slf4j"                     %  "slf4j-api"                % "2.0.6",
       "commons-codec"                 %  "commons-codec"            % "1.15",
-      "org.slf4j"                     %  "slf4j-simple"             % "2.0.5"  % Test,
+      "org.slf4j"                     %  "slf4j-simple"             % "2.0.6"  % Test,
       "org.scalacheck"                %% "scalacheck"               % "1.17.0"  % Test,
       "org.scalatest"                 %% "scalatest"                % "3.2.15"  % Test,
       "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0" % Test
     ),
-    dependencyOverrides ++= Seq(
-      "junit" % "junit" % "4.13.2" % Test
-    )
+//    dependencyOverrides ++= Seq(
+//      "junit" % "junit" % "4.13.2"
+//    )
   )
