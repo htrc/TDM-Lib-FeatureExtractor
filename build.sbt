@@ -95,5 +95,8 @@ lazy val `feature-extractor` = (project in file("."))
       "org.scalacheck"                %% "scalacheck"               % "1.17.0"  % Test,
       "org.scalatest"                 %% "scalatest"                % "3.2.15"  % Test,
       "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0" % Test
+    ),
+    dependencyOverrides ++= Seq(
+      "junit" % "junit" % "4.13.2" % Test
     )
   )
