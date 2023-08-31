@@ -7,8 +7,7 @@ import org.hathitrust.htrc.featureextractor.PageFeatureExtractor
 import org.slf4j.LoggerFactory
 import org.hathitrust.htrc.featureextractor.Helper._
 
-import scala.util.{Failure, Success}
-import org.hathitrust.htrc.tools.scala.io.IOUtils.using
+import scala.util.{Failure, Success, Using}
 
 object NLPInstances {
   private val logger = LoggerFactory.getLogger(getClass)
@@ -33,7 +32,7 @@ object NLPInstances {
     val localePropUrl = new URL(baseUrl, s"$lang.properties")
     logger.debug(s"Loading ${locale.getDisplayLanguage} settings from $localePropUrl")
     val localeProps = new Properties()
-    using(localePropUrl.openStream()) { propStream =>
+    Using.resource(localePropUrl.openStream()) { propStream =>
       localeProps.load(propStream)
     }
 

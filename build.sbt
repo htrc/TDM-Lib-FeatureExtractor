@@ -4,7 +4,7 @@ inThisBuild(Seq(
   organization := "org.hathitrust.htrc",
   organizationName := "HathiTrust Research Center",
   organizationHomepage := Some(url("https://www.hathitrust.org/htrc")),
-  scalaVersion := "2.13.10",
+  scalaVersion := "2.13.11",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -25,7 +25,7 @@ inThisBuild(Seq(
   ),
   dynverSonatypeSnapshots := true,
   versionScheme := Some("semver-spec"),
-  crossScalaVersions := Seq("2.13.8", "2.12.15")
+  crossScalaVersions := Seq("2.13.11", "2.12.18")
 ))
 
 lazy val publishSettings = Seq(
@@ -53,7 +53,7 @@ lazy val ammoniteSettings = Seq(
       val version = scalaBinaryVersion.value match {
         case "2.10" => "1.0.3"
         case "2.11" => "1.6.7"
-        case _ ⇒  "2.5.6"
+        case _ ⇒  "2.5.9"
       }
       "com.lihaoyi" % "ammonite" % version % Test cross CrossVersion.full
     },
@@ -76,11 +76,11 @@ lazy val `feature-extractor` = (project in file("."))
       "corpus for aiding in conducting 'distant-reading' (aka non-consumptive) research",
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     libraryDependencies ++= Seq(
-      "org.hathitrust.htrc"           %% "data-model"               % "2.14.0",
-      "org.hathitrust.htrc"           %% "scala-utils"              % "2.14.3",
-      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.9.0",
-      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2",
-      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.2"
+      "org.hathitrust.htrc"           %% "data-model"               % "2.14.1",
+      "org.hathitrust.htrc"           %% "scala-utils"              % "2.14.4",
+      "org.scala-lang.modules"        %% "scala-collection-compat"  % "2.11.0",
+      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.4",
+      "edu.stanford.nlp"              %  "stanford-corenlp"         % "4.5.4"
         classifier "models"
         classifier "models-arabic"
         classifier "models-chinese"
@@ -89,11 +89,11 @@ lazy val `feature-extractor` = (project in file("."))
         classifier "models-german"
         classifier "models-spanish",
       "com.optimaize.languagedetector" % "language-detector"        % "0.6",
-      "org.slf4j"                     %  "slf4j-api"                % "2.0.6",
-      "commons-codec"                 %  "commons-codec"            % "1.15",
-      "org.slf4j"                     %  "slf4j-simple"             % "2.0.6"     % Test,
+      "org.slf4j"                     %  "slf4j-api"                % "2.0.7",
+      "commons-codec"                 %  "commons-codec"            % "1.16.0",
+      "org.slf4j"                     %  "slf4j-simple"             % "2.0.7"     % Test,
       "org.scalacheck"                %% "scalacheck"               % "1.17.0"    % Test,
-      "org.scalatest"                 %% "scalatest"                % "3.2.15"    % Test,
+      "org.scalatest"                 %% "scalatest"                % "3.2.16"    % Test,
       "org.scalatestplus"             %% "scalacheck-1-15"          % "3.2.11.0"  % Test
     ),
     dependencyOverrides ++= Seq(
